@@ -1,0 +1,5 @@
+# exclude 
+database/*
+
+# exception to the rule
+!multi-master.info/.gitkeep 
