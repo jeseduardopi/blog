@@ -4,9 +4,21 @@ require('Factory/PDOFactory.php');
 $db = PDOFactory::getMysqlConnection();
 
 try {
-    $query = "CREATE TABLE VR";
-    $db -> prepare($query);
+    $query = 'CREATE TABLE utilisateur
+(
+    id INT PRIMARY KEY NOT NULL,
+    nom VARCHAR(100),
+    prenom VARCHAR(100),
+    email VARCHAR(255),
+    date_naissance DATE,
+    pays VARCHAR(255),
+    ville VARCHAR(255),
+    code_postal VARCHAR(5),
+    nombre_achat INT
+)';
+    $db = PDOquery('CREATE TABLE utilisateur(id INT PRIMARY KEY NOT NULL,nom VARCHAR(100))';
+    $db->execute();
 }
 catch(Exception $e){
-    echo $e -> getMessage();
+    echo $e->getMessage();
 }
