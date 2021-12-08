@@ -1,5 +1,7 @@
 <?php
-require_once('BaseManager.php');
+namespace App\Manager;
+
+use
 
 class PostManager extends BaseManager
 {   
