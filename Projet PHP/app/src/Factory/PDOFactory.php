@@ -23,5 +23,3 @@ class PDOFactory
         return self::getMysqlConnection();
     }
 }
-$lol = new PDOFactory();
-$lol->getConnection();
