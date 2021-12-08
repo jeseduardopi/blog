@@ -17,7 +17,7 @@ class UserManager extends BaseManager
 
     public function getUserByID(int $id)
     {
-        $query = $this->pdo->prepare('SELECT * FROM' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
+        $query = $this->pdo->prepare('SELECT * FROM' . PDOFactory::DATABASE . '.users' . ' ' . 'WHERE id = :id');
         $query->bindvalue(':id', $id, \PDO::PARAM_INT);
         $query->execute();
         $query-> setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, //TODO);
@@ -36,7 +36,7 @@ class UserManager extends BaseManager
 
     public function deleteUser (int $id)
     {
-        $query = $this->pdo->prepare('DELETE FROM' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
+        $query = $this->pdo->prepare('DELETE FROM' . PDOFactory::DATABASE . '.users' . ' ' . 'WHERE id = :id');
         $query->bindvalue(':id', $id, \PDO::PARAM_INT);
         $query->execute();
         $query-> setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, //TODO);
