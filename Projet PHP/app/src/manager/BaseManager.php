@@ -2,12 +2,10 @@
 
 namespace App\Manager;
 
-abstract class BaseManager
-{
+abstract class BaseManager {
     protected $pdo;
-
     public function __construct($pdo)
     {
-        $this->pdo = $pdo;
+        $this->pdo = $pdo->getConnection();
     }
 }
