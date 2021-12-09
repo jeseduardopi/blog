@@ -21,12 +21,19 @@ class PostController extends BaseController
             'home.php',
             [
                 'posts' => $posts,
-                'user' => new Post(),
+                'post' => new Post(),
                 'test' => 'je suis un test'
             ],
             'Home page'
         );
     }
+
+    /*
+     * 'Accueil',
+            [
+                'personnages' => $personnageManager->getAllPersonnages(),
+            ],
+            'Frontend/home'*/
 
     public function executeShow()
     {

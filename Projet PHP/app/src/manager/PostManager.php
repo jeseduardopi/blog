@@ -16,7 +16,7 @@ class PostManager extends BaseManager
      //  return $query->setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\Post');
 
 
-            return $query->fetchAll(\PDO::FETCH_ASSOC);
+            return $query->fetchAll(\PDO::FETCH_OBJ);
     }
 
     public function getPostByID(int $id): Post

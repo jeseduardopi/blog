@@ -7,7 +7,29 @@
  */
 
 
-
-echo $test;
+print_r($posts);
 
 ?>
+<table class="table">
+    <thead>
+    <th>Titre</th>
+    <th>Contenu</th>
+    <th>Date</th>
+    <th>userId</th>
+    </thead>
+    <tbody>
+    <?php
+    foreach($posts as $post){
+        ?>
+        <tr>
+            <td><?php echo $post->getTitle(); ?></td>
+            <td><?php echo $post->getContent(); ?></td>
+            <!--<td><?php //echo $post['publish_date']; ?></td>
+            <td><?php // echo $post['userId']; ?></td>-->
+
+        </tr>
+        <?php
+    }
+    ?>
+    </tbody>
+</table>
