@@ -1,25 +1,33 @@
 <?php 
 
+namespace App\Manager;
+
 class CommentManager {
-    public function __construct(ConnectionInterface $pdo)
+    /*public function __construct(ConnectionInterface $pdo)
     {
         parent::__construct($pdo);
 
-    }
+    }*/
 
     /**
      * @return Comments[]
      */
     public function getAllComments(): array
     {
+
+        /*
         $query = 'SELECT * FROM ' . PDOFactory::DATABASE . '.comments';
         $select = $this->pdo->query($query);
         $results = $select->fetchAll(\PDO::FETCH_ASSOC);
         $return = [];
-        foreach ($results as $result) {
+*/
+        $results = ['Testfvqdfq','test1qfsdfqsd','test2vwcxvwxc'];
+        return  $results;
+        /*foreach ($results as $result) {
             $className = $result['className'];
             $return[] = new $className($comments);
-        return $return;
+            return $return;
+        }*/
     }
 
     public function addComment(Comments $personnage): Comments
