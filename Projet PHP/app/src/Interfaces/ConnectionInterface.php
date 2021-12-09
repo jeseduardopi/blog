@@ -1,6 +1,6 @@
 <?php
 
-//namespace App\Fram\Interfaces;
+namespace App\Interfaces;
 
 interface ConnectionInterface
 {
