@@ -49,7 +49,7 @@ $DateTime=strftime("%B-%d-%Y %H:%M:%S",$CurrentTime);
         <button class="btn btn-outline-primary" type="submit text-primary" >Rechercher</button>
     </form>
     <div>
-        <?php $content; ?>
+        <?php echo $content; ?>
     </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

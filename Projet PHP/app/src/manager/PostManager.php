@@ -3,8 +3,8 @@
 namespace App\Manager;
 
 use App\Manager\BaseManager;
-
 use App\Factory\PDOFactory;
+use App\Entity\Post;
 
 
 class PostManager extends BaseManager
@@ -13,19 +13,32 @@ class PostManager extends BaseManager
     {
         $query = $this->pdo->query('SELECT * FROM ' . PDOFactory::DATABASE . '.posts');
         $query->execute();
-     //  return $query->setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\Post');
 
-
-            return $query->fetchAll(\PDO::FETCH_OBJ);
+        return $query->fetchAll(\PDO::FETCH_CLASS,'App\Entity\Post');
     }
 
-    public function getPostByID(int $id): Post
+    public function getPostById(int $id)
     {
+        $query = $this->pdo->prepare('SELECT * FROM posts WHERE id = :id');
+        $query->execute(array('id'=>$id));
+       // $query->fetch(PDOFETCH)
+        /*SELECT * FROM `posts` WHERE id=1;
         $query = $this->pdo->prepare('SELECT * FROM' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
         $query->bindvalue(':id', $id, \PDO::PARAM_INT);
         $query->execute();
         $query-> setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\Post');
         return $query->fetch();
+        */
+
+
+        /*$query = 'SELECT * FROM ' . PDOFactory::DATABASE . '.posts WHERE id = :id';
+        $select = $this->pdo->prepare($query);
+        $select->bindValue(':id', $id, \PDO::PARAM_INT);
+        $select->execute();
+
+        $result = $select->fetch(\PDO::FETCH_ASSOC);
+*/
+        //return $result;
     }
 
     public function deletePost(int $id): bool

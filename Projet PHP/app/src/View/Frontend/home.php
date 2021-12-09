@@ -6,26 +6,25 @@
  * @var $posts \App\Entity\Post[]
  */
 
-
-print_r($posts);
-
 ?>
 <table class="table">
     <thead>
     <th>Titre</th>
     <th>Contenu</th>
-    <th>Date</th>
-    <th>userId</th>
+    <!--<th>Date</th>-->
+    <th>Actions</th>
     </thead>
     <tbody>
     <?php
     foreach($posts as $post){
+
         ?>
         <tr>
-            <td><?php echo $post->getTitle(); ?></td>
+            <td><a href="/post/<?php echo $post->getId()?>"><?php  echo $post->getTitle(); ?></a></td>
             <td><?php echo $post->getContent(); ?></td>
-            <!--<td><?php //echo $post['publish_date']; ?></td>
-            <td><?php // echo $post['userId']; ?></td>-->
+
+            <td><a href="/show/".<?php $post->getUserId()?> class="btn text-white bg-primary">Modifier</a>
+                <a href="/show/".<?php $post->getUserId()?> class="btn text-white bg-danger">Delete</a></td>
 
         </tr>
         <?php

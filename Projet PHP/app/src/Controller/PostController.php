@@ -16,14 +16,9 @@ class PostController extends BaseController
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $posts = $postManager->getAllPosts();
-
+//'posts' => $posts,
         $this->render(
-            'home.php',
-            [
-                'posts' => $posts,
-                'post' => new Post(),
-                'test' => 'je suis un test'
-            ],
+            'home.php',['posts'=> $posts],
             'Home page'
         );
     }
@@ -38,22 +33,31 @@ class PostController extends BaseController
     public function executeShow()
     {
         /*Flash::setFlash('alert', 'je suis une alerte');
+*/      $postManager = new PostManager(new \App\Factory\PDOFactory());
+       $post = $postManager->getPostById($this->params['id']);
+       var_dump($this->params['id']);
 
         $this->render(
             'show.php',
             [
-                'test' => 'article ' . $this->params['id']
+                'test' => $post
             ],
             'Show Page'
-        );*/
+        );
     }
 
-    public function executeAuthor()
+    public function executePost()
     {
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $post = $postManager->getPostById($this->params['id']);
+        //var_dump($this->params['id']);
+
         $this->render(
-            'author.php',
-            [],
-            'Auteur'
+            'post.php',
+            [
+                'post' => $post
+            ],
+            'Post'
         );
     }
 

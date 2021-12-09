@@ -2,6 +2,9 @@
 
 <routes>
     <route path="/" action="index" controller="PostController"/>
+    <route path="post" action="post" controller="PostController" params="id"/>
+
     <route path="show" action="show" controller="PostController" params="id"/>
     <route path="author" action="author" controller="PostController"/>
+
 </routes>
