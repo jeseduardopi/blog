@@ -45,7 +45,7 @@ class PostController extends BaseController
             'Show Page'
         );
     }
-
+/*
     public function executePost()
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
@@ -60,5 +60,6 @@ class PostController extends BaseController
             'Post'
         );
     }
+*/
 
 }
