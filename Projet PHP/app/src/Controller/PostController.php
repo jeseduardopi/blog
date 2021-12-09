@@ -60,5 +60,4 @@ class PostController extends BaseController
             'Post'
         );
     }
-
 }

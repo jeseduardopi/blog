@@ -20,7 +20,7 @@ class HTTPResponse
         $this->addHeader('HTTP/1.0 401 Unauthorized');
         exit(json_encode($messages, JSON_PRETTY_PRINT));
     }
-    
+
     public function setCookie($name, $value = '', $expire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
     {
         setcookie($name, $value, $expire, $path, $domain, $secure, $httpOnly);
