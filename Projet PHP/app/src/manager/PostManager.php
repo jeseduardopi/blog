@@ -13,8 +13,10 @@ class PostManager extends BaseManager
     {
         $query = $this->pdo->query('SELECT * FROM ' . PDOFactory::DATABASE . '.posts');
         $query->execute();
-      //  $query->setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\Post');
-        return $query->fetchAll();
+     //  return $query->setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\Post');
+
+
+            return $query->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getPostByID(int $id): Post
@@ -37,21 +39,21 @@ class PostManager extends BaseManager
     public function createPost(Post $post): bool
     {
         $query = $this->pdo->prepare('INSERT INTO' . PDOFactory::DATABASE . '.posts (title, content, publish_date, userId) VALUES (:title, :content, :publish_date, :userId)');
-        $query->bindValue(:title, post->getTitle(), PDO::PARAM_STR);
-        $query->bindValue(:content, post->getContent(), PDO::PARAM_STR);
-        $query->bindValue(:pubish_date, date('Y/m/d H:i:s'), PDO::PARAM_STR);
-        $query->bindValue(:userID, post->getUserId(), PDO::PARAM_INT);
+        $query->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+        $query->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
+        $query->bindValue(':pubish_date', date('Y/m/d H:i:s'), PDO::PARAM_STR);
+        $query->bindValue(':userID', $post->getUserId(), PDO::PARAM_INT);
         return $query->execute();
     }
 
 
-    public function editPost(): bool
+    public function editPost(Post $post): bool
     {
         $query = $this->pdo->prepare('UPDATE' . PDOFactory::DATABASE . '.posts SET title = :title, content = :content, userId = :userId WHERE id = :id)');
-        $query->bindValue(:title, post->getTitle(), PDO::PARAM_STR);
-        $query->bindValue(:content, post->getContent(), PDO::PARAM_STR);
-        $query->bindValue(:userID, post->getUserId(), PDO::PARAM_INT);
-        $query->bindValue(:id, post->getId(), PDO::PARAM_INT);
+        $query->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
+        $query->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
+        $query->bindValue(':userID', $post->getUserId(), PDO::PARAM_INT);
+        $query->bindValue(':id', $post->getId(), PDO::PARAM_INT);
         return $query->execute();
     }
 }

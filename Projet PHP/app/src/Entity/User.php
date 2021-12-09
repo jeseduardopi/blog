@@ -1,6 +1,8 @@
 <?php
+namespace App\Entity;
+use App\Entity\BaseEntity;
 
-class user extends BaseEntity
+class User extends BaseEntity
 {
     private int $id;
     private string $pseudo;

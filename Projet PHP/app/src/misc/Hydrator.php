@@ -1,4 +1,6 @@
 <?php
+namespace App\Misc;
+
 trait Hydrator
 {
     private function hydrate($data)

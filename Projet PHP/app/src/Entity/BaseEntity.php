@@ -1,4 +1,7 @@
-<?php 
+<?php
+namespace App\Entity;
+
+use App\Misc\Hydrator;
 
 abstract class BaseEntity 
 {

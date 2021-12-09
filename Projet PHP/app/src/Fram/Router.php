@@ -1,46 +1,18 @@
 <?php
 
-//use App\Controller\ErrorController;
-//use App\Fram\HTTPFoundation\HTTPRequest;
-
-namespace App\Fram;
-
-
-class Router
-{
-    private HTTPRequest $HTTPRequest;
-     public function __construct()
-     {
-         //$this->HTTPRequest = new HttpRequest();
-     }
-
-}
-
-/*<?php
-
 namespace App\Fram;
 
 use App\Controller\ErrorController;
-use App\Fram\HTTPFoundation\HTTPRequest;
 
 class Router
 {
-    private HTTPRequest $HTTPRequest;
-
-    public function __construct()
-    {
-        $this->HTTPRequest = new HTTPRequest();
-    }
-
     public function getController()
     {
         $xml = new \DOMDocument();
-        $xml->load(__DIR__ . '/../../config/routes.xml');
+        $xml->load(__DIR__ . '../../../config/routes.xml');
         $routes = $xml->getElementsByTagName('route');
 
-        $requestPath = $this->HTTPRequest->getQuery('p');
-
-        isset($requestPath) ? $path = htmlspecialchars($requestPath) : $path = "/";
+        isset($_GET['p']) ? $path = strtolower(htmlspecialchars($_GET['p'])) : $path = '/';
 
         foreach ($routes as $route) {
             if ($path === $route->getAttribute('path')) {
@@ -48,15 +20,17 @@ class Router
                 $action = $route->getAttribute('action');
                 $params = [];
                 if ($route->hasAttribute('params')) {
-                    $keys = explode(',', $route->getAttribute('params'));
-                    foreach ($keys as $key) {
-                        $params[$key] = $this->HTTPRequest->getQuery($key);
+                    $paramsArray = explode(',', $route->getAttribute('params'));
+                    foreach ($paramsArray as $param) {
+                        $params[$param] = $_GET[$param];
                     }
                 }
                 return new $controllerClass($action, $params);
             }
+
         }
 
-        return new ErrorController('noRoute');
+        return new ErrorController('error404');
+
     }
-}*/
+}
