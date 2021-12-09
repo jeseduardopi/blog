@@ -62,6 +62,6 @@ class PostManager extends BaseManager
     
 
 
-
+/*
 $x = new PostManager();
-$x->getAllPosts();
+$x->getAllPosts();*/
