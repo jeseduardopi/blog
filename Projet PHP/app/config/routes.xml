@@ -4,4 +4,7 @@
     <route path="/" action="index" controller="PostController"/>
     <route path="show" action="show" controller="PostController" params="id"/>
     <route path="author" action="author" controller="PostController"/>
+
+    <!-- Api Rest -->
+    <route path="post" action="postsApi" controller="PostController" params="id,number"/>
 </routes>
