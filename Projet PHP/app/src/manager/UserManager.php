@@ -29,27 +29,11 @@ class UserManager {
 
     public function addPersonnage(Personnage $personnage): Personnage
     {
-        if (get_class($personnage) == 'App\Entity\Magicien') {
-            $query = 'INSERT INTO ' . PDOFactory::DATABASE . '.personnage (className, nom, pv, `force`, defense, sleep, lastSpell) VALUES (:className, :nom, :pv, :force, :defense, :sleep, :lastSpell)';
-        } else {
-            $query = 'INSERT INTO ' . PDOFactory::DATABASE . '.personnage (className, nom, pv, `force`, defense, sleep) VALUES (:className, :nom, :pv, :force, :defense, :sleep)';
-        }
-
-        $insert = $this->pdo->prepare($query);
-        $insert->bindValue(':className', get_class($personnage), \PDO::PARAM_STR);
-        $insert->bindValue(':nom', $personnage->getNom(), \PDO::PARAM_STR);
-        $insert->bindValue(':pv', $personnage->getPv(), \PDO::PARAM_INT);
-        $insert->bindValue(':force', $personnage->getForce(), \PDO::PARAM_INT);
-        $insert->bindValue(':defense', $personnage->getDefense(), \PDO::PARAM_INT);
-        $insert->bindValue(':sleep', $personnage->getSleep(), \PDO::PARAM_STR);
-
-        if (get_class($personnage) == 'App\Entity\Magicien') {
-            $insert->bindValue(':lastSpell', $personnage->getLastSpell(), \PDO::PARAM_STR);
-        }
-
-        $insert->execute();
-
-        return $this->getPersonnageById($this->pdo->lastInsertId());
+        $query = $this->pdo->prepare('SELECT * FROM' . PDOFactory::DATABASE . '.users' . ' ' . 'WHERE id = :id');
+        $query->bindvalue(':id', $id, \PDO::PARAM_INT);
+        $query->execute();
+        $query-> setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, //TODO);
+        return $query->fetch();
     }
 
     public function getPersonnageById($id): Personnage
@@ -85,9 +69,10 @@ class UserManager {
 
     public function deletePersonnageById($id): bool
     {
-        $query = 'DELETE FROM ' . PDOFactory::DATABASE . '.personnage WHERE id = :id';
-        $select = $this->pdo->prepare($query);
-        $select->bindValue(':id', $id, \PDO::PARAM_INT);
-        return $select->execute();
+        $query = $this->pdo->prepare('DELETE FROM' . PDOFactory::DATABASE . '.users' . ' ' . 'WHERE id = :id');
+        $query->bindvalue(':id', $id, \PDO::PARAM_INT);
+        $query->execute();
+        $query-> setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, //TODO) ;
+        return $query->fetch();
     }
 }
