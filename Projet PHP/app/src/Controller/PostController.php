@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Factory\PDOFactory;
 use App\Fram\Flash;
+use App\Manager\CommentManager;
 use App\Manager\PostManager;
 
 class PostController extends BaseController
@@ -16,19 +17,13 @@ class PostController extends BaseController
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $posts = $postManager->getAllPosts();
-//'posts' => $posts,
+
         $this->render(
             'home.php',['posts'=> $posts],
             'Home page'
         );
     }
 
-    /*
-     * 'Accueil',
-            [
-                'personnages' => $personnageManager->getAllPersonnages(),
-            ],
-            'Frontend/home'*/
 
     public function executeShow()
     {
@@ -49,11 +44,14 @@ class PostController extends BaseController
     public function executePost()
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $commentManager = new CommentManager(new PDOFactory());
         $post = $postManager->getPostById($this->params['id']);
+        $comments = $commentManager->getAllCommentsFromPostId($this->params['id']);
         $this->render(
             'post.php',
             [
-                'post' => $post
+                'post' => $post,
+                'comments' => $comments
             ],
             'Post'
         );
@@ -61,40 +59,19 @@ class PostController extends BaseController
 
     public function executeAdd()
     {
-        print_r($this->params);
+       // print_r($this->params);
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $newPost = new Post();
-
-
         $newPost->setTitle($this->params['title']);
         $newPost->setContent($this->params['content']);
-
         if($this->params['userId'] == '') {
             $newPost->setUserId(1);
         }
-        var_dump($newPost);
+        //var_dump($newPost);
         $postManager->addPost($newPost);
 
 
-        /*
-        $newPost->setContent(params['content']);
-         $newPost->setUserId(1);
-        */
-        // if user is name is null, if(params['userId'] == ""){}
-
-
-
-
-        // get user id, $post = $postManager->getUserById($this->params['userId']);
-      /*  $this->render(
-            'write.php',
-            [
-                'post' => $post
-            ],
-            'Post'
-        );*/
-       // $this->HTTPResponse->redirect('/play/' . $newPerso->getId());
-        //header('Location:localhost:5555/article/'. $newPost->getId());
+        header('Location:/');
     }
 
 
@@ -102,10 +79,58 @@ class PostController extends BaseController
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $this->render(
-            'write.php',['posts'=> $posts],
+            'write.php',[],
             'Add post page'
         );
     }
 
+    public function executeDelete()
+    {
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
 
+
+        //$post = $postManager->getPostById($this->params['id']);
+
+        $postManager->deletePost($this->params['id']);
+    }
+
+    public function executeEdit()
+    {
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+
+
+        $post = $postManager->getPostById($this->params['id']);
+
+
+        //$postManager->editPost($this->params['id']);
+
+        $this->render(
+            'edit.php',[
+            'post' => $post
+        ],
+            'Add post page'
+        );
+    }
+
+    public function executeModify()
+    {
+        var_dump($this->params);
+        echo '<br/>';
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+
+        $post = new Post();
+        $post->setId($this->params['id']);
+        $post->setTitle($this->params['title']);
+        $post->setContent($this->params['content']);
+
+        if($this->params['userId'] == '') {
+            $post->setUserId(1);
+        }
+        //var_dump($newPost);
+        $postManager->editPost($post);
+
+
+        //header('Location:/');
+
+    }
 }

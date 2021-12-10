@@ -21,12 +21,11 @@
 
         ?>
         <tr>
-            <td><a href="/post/<?php echo $post->getId()?>"><?php  echo $post->getTitle(); ?></a></td>
+            <td><a href="/post/<?php echo $post->getId();?>"><?php  echo $post->getTitle(); ?></a></td>
             <td><?php echo $post->getContent(); ?></td>
 
-            <td><a href="/show/".<?php $post->getUserId()?> class="btn text-white bg-primary">Modifier</a>
-                <a href="/show/".<?php $post->getUserId()?> class="btn text-white bg-danger">Delete</a></td>
-
+            <td><a href="/edit/<?php echo $post->getId();?>" class="btn text-white bg-primary">Modifier</a>
+                <a href="/delete/<?php echo $post->getId();?>" class="btn text-white bg-danger">Delete <?php echo $post->getId(); ?></a></td>
         </tr>
         <?php
     }

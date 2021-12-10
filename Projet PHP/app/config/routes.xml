@@ -8,6 +8,11 @@
 
     <route path="write" action="create" controller="PostController" />
     <route path="add" action="add" controller="PostController" params="title,content,userId"/>
+    <route path="delete" action="delete" controller="PostController" params="id"/>
+    <route path="edit" action="edit" controller="PostController" params="id" />
+    <route path="modify" action="modify" controller="PostController" params="id,title,content,userId" />
+
+    <!--<route path="edit" action="modify" controller="PostController" params="id, title, content" />-->
     <!--<route path="author" action="author" controller="PostController"/>-->
 
     <route path="posts"  controller="PostController" action="postsApi" params="id,number"/>

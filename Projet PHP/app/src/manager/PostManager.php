@@ -33,11 +33,10 @@ class PostManager extends BaseManager
 
     public function deletePost(int $id): bool
     {
-        $query = $this->pdo->prepare('DELETE FROM' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
+        $query = $this->pdo->prepare('DELETE FROM ' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
         $query->bindvalue(':id', $id, \PDO::PARAM_INT);
         return $query->execute();
     }
-
 
     public function addPost(Post $post): bool
     {
@@ -45,19 +44,23 @@ class PostManager extends BaseManager
         $query->bindValue(':title', $post->getTitle(), \PDO::PARAM_STR);
         $query->bindValue(':content', $post->getContent(), \PDO::PARAM_STR);
         $query->bindValue(':publish_date', date('Y/m/d H:i:s'), \PDO::PARAM_STR);
-        $query->bindValue(':userID', $post->getUserId(), \PDO::PARAM_INT);
+        $query->bindValue(':userId', $post->getUserId(), \PDO::PARAM_INT);
         return $query->execute();
     }
 
 
     public function editPost(Post $post): bool
     {
-        $query = $this->pdo->prepare('UPDATE' . PDOFactory::DATABASE . '.posts SET title = :title, content = :content, userId = :userId WHERE id = :id)');
-        $query->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
-        $query->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
-        $query->bindValue(':userID', $post->getUserId(), PDO::PARAM_INT);
-        $query->bindValue(':id', $post->getId(), PDO::PARAM_INT);
-        return $query->execute();
+        /*$query = $this->pdo->prepare('UPDATE ' . PDOFactory::DATABASE . '.posts SET title = :title, content = :content WHERE id = :id)');*/
+        $query = 'UPDATE ' . \App\Factory\PDOFactory::DATABASE . '.posts SET title = :title, content = :content WHERE id = :id';
+
+        $update = $this->pdo->prepare($query);
+
+        $update->bindValue(':title', $post->getTitle(), \PDO::PARAM_STR);
+        $update->bindValue(':content', $post->getContent(), \PDO::PARAM_STR);
+        //$query->bindValue(':userId', $post->getUserId(), \PDO::PARAM_INT);
+        $update->bindValue(':id', $post->getId(), \PDO::PARAM_INT);
+        return $update->execute();
     }
 }
     

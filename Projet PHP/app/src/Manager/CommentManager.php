@@ -11,8 +11,8 @@ class CommentManager extends BaseManager {
     public function getAllCommentsFromPostId(int $postId): array
     {
         $query = $this->pdo->prepare('SELECT * FROM ' .  PDOFactory::DATABASE . '.comments WHERE postId = :postId');
-        $query->bindValue(':postId', $postId, PDO::PARAM_STR);
-        $query->setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\user');
+        $query->bindValue(':postId', $postId, \PDO::PARAM_INT);
+        $query->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'App\Entity\user');
         return $query->fetchAll();
     }
 
