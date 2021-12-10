@@ -20,6 +20,14 @@ class UserManager {
         return $query->fetchAll();
     }
 
+    public function getAllLogin(): array
+    {
+        $query = $this->pdo->query('SELECT email, password FROM ' . PDOFactory::DATABASE . '.users');
+        $query->execute();
+        $query->setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\user');
+        return $query->fetchAll();
+    }
+
     public function getUserById(int $id): user
     {
         $query = $this->pdo->prepare('SELECT * FROM ' . PDOFactory::DATABASE . '.users' . ' ' . 'WHERE id = :id');
