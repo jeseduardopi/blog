@@ -34,15 +34,13 @@ class PostController extends BaseController
     public function executeShow()
     {
         /*Flash::setFlash('alert', 'je suis une alerte');*/
-        $commentManager = new CommentManager(new \App\Factory\PDOFactory());
         $postManager = new PostManager(new \App\Factory\PDOFactory());
-        $comments = $commentManager ->getAllCommentsFromPostId($this->params['id']);
         $post = $postManager->getPostById($this->params['id']);
 
         $this->render(
             'show.php',
             [
-                'test' => $post, $comments
+                'test' => $post
             ],
             'Show Page'
         );
@@ -50,12 +48,15 @@ class PostController extends BaseController
 
     public function executePost()
     {
+        $commentManager = new CommentManager(new \App\Factory\PDOFactory());
         $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $comments = $commentManager ->getAllCommentsFromPostId();
         $post = $postManager->getPostById($this->params['id']);
         $this->render(
             'post.php',
             [
-                'post' => $post
+                'post' => $post,
+                'comments' => $comments
             ],
             'Post'
         );

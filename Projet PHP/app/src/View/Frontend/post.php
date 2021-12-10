@@ -6,3 +6,12 @@
 
 
 
+<?php
+print_r($comments);
+foreach ($comments as $comment){
+    echo '<p>';
+}
+?>
+
+
+

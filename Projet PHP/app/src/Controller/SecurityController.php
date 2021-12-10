@@ -11,15 +11,22 @@ class BaseSecurity extends BaseController
     public function executeLogin(): bool
     {
         $userManager = new userManager(new \App\Factory\PDOFactory());
-        $users = $userManager->getAllLogin();
-        if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-            return false;
-        }
-        foreach ($users as $user){
-            if ($user->getEmail() == $_SERVER['PHP_AUTH_USER'] && $user->getPassword() == md5($_SERVER['PHP_AUTH_PW'])){
-                return true;
+        $users = $userManager->getAllUsers();
+        if (isset($_POST['EMAIL']) || isset($_POST['PASSWORD']) || isset($_POST['VALIDATION'])) {
+            foreach ($users as $user){
+                if ($user->getEmail() == $_POST['EMAIL'] && $user->getPassword() == $_POST['PASSWORD']){
+                    session_start();
+                    $_SESSION['logged_in'] = true;
+                    $_SESSION['USER_ID'] = $user->getId;
+                    $_SESSION['IsAdmin'] = $user->getAdmin;
+                }
             }
         }
         return false;
+    }
+
+    public function executeLogout(): bool
+    {
+
     }
 }

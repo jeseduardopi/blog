@@ -39,7 +39,9 @@ $DateTime=strftime("%B-%d-%Y %H:%M:%S",$CurrentTime);
             </ul>
         </div>
         <ul class="navbar-nav">
-            <button class="btn btn-outline-primary" type="submit text-primary" >Se connecter</button>
+            <a href="/login.php">
+            <button class="btn btn-outline-primary" type="submit text-primary">Se connecter</button>
+            </a>
         </ul>
     </div>
 </nav>
