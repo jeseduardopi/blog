@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Factory\PDOFactory;
 use App\Fram\Flash;
+use App\Manager\CommentManager;
 use App\Manager\PostManager;
 
 class PostController extends BaseController
@@ -32,15 +33,16 @@ class PostController extends BaseController
 
     public function executeShow()
     {
-        /*Flash::setFlash('alert', 'je suis une alerte');
-*/      $postManager = new PostManager(new \App\Factory\PDOFactory());
-       $post = $postManager->getPostById($this->params['id']);
-       var_dump($this->params['id']);
+        /*Flash::setFlash('alert', 'je suis une alerte');*/
+        $commentManager = new CommentManager(new \App\Factory\PDOFactory());
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $comments = $commentManager ->getAllCommentsFromPostId($this->params['id']);
+        $post = $postManager->getPostById($this->params['id']);
 
         $this->render(
             'show.php',
             [
-                'test' => $post
+                'test' => $post, $comments
             ],
             'Show Page'
         );
@@ -50,7 +52,6 @@ class PostController extends BaseController
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $post = $postManager->getPostById($this->params['id']);
-        //var_dump($this->params['id']);
 
         $this->render(
             'post.php',
