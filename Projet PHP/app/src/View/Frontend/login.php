@@ -14,37 +14,21 @@
     </head>
     <body>
     <h1 style="text-align: center;">Bienvenue sur notre blog</h1>
-    <form style="width: 60vw; margin: 0 auto;">
+    <form action="access" method="post" style="width: 60vw; margin: 0 auto;">
         <div class="row mb-3">
             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail">
+                <input type="email" name="EMAIL" class="form-control" id="inputEmail">
             </div>
         </div>
         <div class="row mb-3">
             <label for="inputPassword" class="col-sm-2 col-form-label">Mot de passe</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="inputPassword">
+                <input type="password" name="PASSWORD" class="form-control" id="inputPassword">
             </div>
         </div>
-        <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Rôles</legend>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="admin" value="option1" checked>
-                    <label class="form-check-label" for="admin">
-                        Admin
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="utilisateur" value="option2">
-                    <label class="form-check-label" for="utilisateur">
-                        Utilisateur
-                    </label>
-                </div>
-            </div>
-        </fieldset>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+
+        <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

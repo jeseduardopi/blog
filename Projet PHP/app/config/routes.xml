@@ -2,7 +2,11 @@
 
 <routes>
     <route path="/" action="index" controller="PostController"/>
-    <route path="login" action="Create" controller="SecurityController"></route>
+    <route path="createaccount" action="create" controller="SecurityController"></route>
+
+    <route path="login" action="login" controller="SecurityController"></route>
+    <route path="access" action="access" controller="SecurityController"></route>
+
     <route path="post" action="post" controller="PostController" params="id"/>
 
 
