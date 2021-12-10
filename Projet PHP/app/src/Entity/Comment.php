@@ -60,4 +60,5 @@ class Comment extends BaseEntity
     {
         $this->postId = $postId;
     }
+
 }
