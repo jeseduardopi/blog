@@ -4,9 +4,9 @@
     <route path="/" action="index" controller="PostController"/>
     <route path="login" action="login" controller="SecurityController"></route>
     <route path="post" action="post" controller="PostController" params="id"/>
-
+<!--
     <route path="show" action="show" controller="PostController" params="id"/>
-    <route path="author" action="author" controller="PostController"/>
+    <route path="author" action="author" controller="PostController"/>-->
 
 
     //Rest API

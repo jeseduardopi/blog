@@ -52,7 +52,6 @@ class PostController extends BaseController
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $post = $postManager->getPostById($this->params['id']);
-
         $this->render(
             'post.php',
             [
@@ -61,4 +60,6 @@ class PostController extends BaseController
             'Post'
         );
     }
+
+
 }

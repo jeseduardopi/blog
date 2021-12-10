@@ -18,27 +18,17 @@ class PostManager extends BaseManager
     }
 
     public function getPostById(int $id)
-    {
-        $query = $this->pdo->prepare('SELECT * FROM posts WHERE id = :id');
-        $query->execute(array('id'=>$id));
-       // $query->fetch(PDOFETCH)
-        /*SELECT * FROM `posts` WHERE id=1;
-        $query = $this->pdo->prepare('SELECT * FROM' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
-        $query->bindvalue(':id', $id, \PDO::PARAM_INT);
-        $query->execute();
-        $query-> setFetchMode(\PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Entity\Post');
-        return $query->fetch();
-        */
+     {/*
+         $query = $this->pdo->prepare('SELECT * FROM posts WHERE id = :id');
+         $query->execute(array('id'=>$id));
+         $query->fetch(PDO::FETCH_OBJ);
+         */
+         $query = $this->pdo->prepare('SELECT * FROM ' . PDOFactory::DATABASE . '.posts' . ' ' . 'WHERE id = :id');
+         $query->bindvalue(':id', $id, \PDO::PARAM_INT);
+         $query->execute();
+         $query-> setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'App\Entity\Post');
+         return $query->fetch();
 
-
-        /*$query = 'SELECT * FROM ' . PDOFactory::DATABASE . '.posts WHERE id = :id';
-        $select = $this->pdo->prepare($query);
-        $select->bindValue(':id', $id, \PDO::PARAM_INT);
-        $select->execute();
-
-        $result = $select->fetch(\PDO::FETCH_ASSOC);
-*/
-        //return $result;
     }
 
     public function deletePost(int $id): bool
