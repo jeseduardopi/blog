@@ -5,9 +5,21 @@ use App\Entity\User;
 use App\Factory\PDOFactory;
 use App\Fram\Flash;
 use App\Manager\UserManager;
+use App\Controller\BaseController;
 
-class BaseSecurity extends BaseController
+class SecurityController extends BaseController
 {
+    public function executeCreate()
+    {
+        $this->render(
+            'connexion.php',
+            [],
+            'Show'
+        );
+    }
+
+
+
     public function executeLogin(): bool
     {
         $userManager = new userManager(new \App\Factory\PDOFactory());
@@ -27,6 +39,9 @@ class BaseSecurity extends BaseController
 
     public function executeLogout(): bool
     {
+        session_start();
+        session_destroy();
+        return true;
 
     }
 }
