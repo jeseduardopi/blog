@@ -45,13 +45,11 @@ class PostController extends BaseController
             'Show Page'
         );
     }
-/*
+
     public function executePost()
     {
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $post = $postManager->getPostById($this->params['id']);
-        //var_dump($this->params['id']);
-
         $this->render(
             'post.php',
             [
@@ -60,6 +58,6 @@ class PostController extends BaseController
             'Post'
         );
     }
-*/
+
 
 }
