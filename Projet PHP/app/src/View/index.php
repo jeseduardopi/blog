@@ -1,9 +1,3 @@
-<?php
-$CurrentTime=time();
-$DateTime=strftime("%B-%d-%Y %H:%M:%S",$CurrentTime);
-// echo $DateTime;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,5 +57,3 @@ $DateTime=strftime("%B-%d-%Y %H:%M:%S",$CurrentTime);
     </body>
 </html>
 
-<?php
-?>
