@@ -27,10 +27,9 @@ class PostController extends BaseController
 
     public function executeShow()
     {
-        /*Flash::setFlash('alert', 'je suis une alerte');
-*/      $postManager = new PostManager(new \App\Factory\PDOFactory());
-       $post = $postManager->getPostById($this->params['id']);
-       var_dump($this->params['id']);
+        /*Flash::setFlash('alert', 'je suis une alerte');*/
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $post = $postManager->getPostById($this->params['id']);
 
         $this->render(
             'show.php',
@@ -43,6 +42,7 @@ class PostController extends BaseController
 
     public function executePost()
     {
+        $commentManager = new CommentManager(new \App\Factory\PDOFactory());
         $postManager = new PostManager(new \App\Factory\PDOFactory());
         $commentManager = new CommentManager(new PDOFactory());
         $post = $postManager->getPostById($this->params['id']);

@@ -8,16 +8,8 @@
  */
 
 ?>
-<table class="table">
-    <thead>
-    <th>Titre</th>
-    <th>Contenu</th>
-    <!--<th>Date</th>-->
-    <th>Actions</th>
-    </thead>
-    <tbody>
-    <?php
-    foreach($posts as $post){
+<?php
+foreach($posts as $post){
 
         ?>
         <tr>
@@ -32,3 +24,5 @@
     ?>
     </tbody>
 </table>
+
+

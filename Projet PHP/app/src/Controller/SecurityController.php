@@ -5,21 +5,67 @@ use App\Entity\User;
 use App\Factory\PDOFactory;
 use App\Fram\Flash;
 use App\Manager\UserManager;
+use App\Controller\BaseController;
 
-class BaseSecurity extends BaseController
+class SecurityController extends BaseController
 {
-    public function executeLogin(): bool
+    public function executeCreate()
+    {
+        Flash::setFlash('alert', 'je suis une alerte');
+        $this->render(
+            'CreateAccount.php',
+            [],
+            'Show'
+        );
+    }
+
+    public function executeLogin()
+    {
+        $this->render(
+            'login.php',
+            [],
+            'Show'
+        );
+    }
+
+
+
+    public function executeAccess(): bool
     {
         $userManager = new userManager(new \App\Factory\PDOFactory());
-        $users = $userManager->getAllLogin();
-        if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-            return false;
-        }
-        foreach ($users as $user){
-            if ($user->getEmail() == $_SERVER['PHP_AUTH_USER'] && $user->getPassword() == md5($_SERVER['PHP_AUTH_PW'])){
-                return true;
+        $users = $userManager->getAllUsers();
+        echo '<script><alert>' . $_REQUEST['EMAIL'] . '</alert></script>';
+        if (isset($_POST['EMAIL']) || isset($_POST['PASSWORD'])) {
+            foreach ($users as $user){
+                if ($user->getEmail() == $_REQUEST['EMAIL'] && $user->getPassword() == $_REQUEST['PASSWORD']){
+                    session_start();
+                    $_SESSION['logged_in'] = true;
+                    $_SESSION['USER_ID'] = $user->getId;
+                    $_SESSION['IsAdmin'] = $user->getAdmin;
+                    $this->render(
+                        'index.php',
+                        [],
+                        'Show'
+                    );
+                }
             }
         }
-        return false;
+        else
+        {
+            $this->render(
+                'index.php',
+                [],
+                'Show'
+            );
+        }
+        return True;
+    }
+
+    public function executeLogout(): bool
+    {
+        session_start();
+        session_destroy();
+        return true;
+
     }
 }
