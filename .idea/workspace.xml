@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="418a26aa-0475-48e2-9a99-30fb7df52af3" name="Changes" comment="">
+    <list default="true" id="68d1e178-ed44-4326-b4d0-52f1271e2125" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projet PHP/app/config/routes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Projet PHP/app/config/routes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projet PHP/app/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Projet PHP/app/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projet PHP/app/src/Fram/Flash.php" beforeDir="false" afterPath="$PROJECT_DIR$/Projet PHP/app/src/Fram/Flash.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projet PHP/app/src/View/Frontend/connexion.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Projet PHP/app/src/View/Frontend/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Projet PHP/app/src/View/Frontend/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projet PHP/app/src/View/Frontend/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/Projet PHP/app/src/View/Frontend/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projet PHP/app/src/View/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Projet PHP/app/src/View/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +49,8 @@
       <recent name="$PROJECT_DIR$/Projet PHP" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Projet PHP/app/src/View/style" />
+      <recent name="$PROJECT_DIR$/Projet PHP/app/src/View" />
       <recent name="$PROJECT_DIR$/Projet PHP/app/src/View/Frontend" />
       <recent name="$PROJECT_DIR$/Projet PHP" />
     </key>
@@ -80,6 +79,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
