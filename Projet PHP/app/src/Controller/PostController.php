@@ -59,5 +59,53 @@ class PostController extends BaseController
         );
     }
 
+    public function executeAdd()
+    {
+        print_r($this->params);
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $newPost = new Post();
+
+
+        $newPost->setTitle($this->params['title']);
+        $newPost->setContent($this->params['content']);
+
+        if($this->params['userId'] == '') {
+            $newPost->setUserId(1);
+        }
+        var_dump($newPost);
+        $postManager->addPost($newPost);
+
+
+        /*
+        $newPost->setContent(params['content']);
+         $newPost->setUserId(1);
+        */
+        // if user is name is null, if(params['userId'] == ""){}
+
+
+
+
+        // get user id, $post = $postManager->getUserById($this->params['userId']);
+      /*  $this->render(
+            'write.php',
+            [
+                'post' => $post
+            ],
+            'Post'
+        );*/
+       // $this->HTTPResponse->redirect('/play/' . $newPerso->getId());
+        //header('Location:localhost:5555/article/'. $newPost->getId());
+    }
+
+
+    public function executeCreate()
+    {
+        $postManager = new PostManager(new \App\Factory\PDOFactory());
+        $this->render(
+            'write.php',['posts'=> $posts],
+            'Add post page'
+        );
+    }
+
 
 }

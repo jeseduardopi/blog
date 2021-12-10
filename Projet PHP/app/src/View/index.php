@@ -25,14 +25,19 @@ $DateTime=strftime("%B-%d-%Y %H:%M:%S",$CurrentTime);
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="blog.php?page=1">Accueil</a>
+                    <a class="nav-link" href="/">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/home.php">Post</a>
+                    <a class="nav-link" href="/">Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Commentaires</a>
+                    <a class="nav-link" href="write">Write</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">Commentaires</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Parametre</a>
                 </li>

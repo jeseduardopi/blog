@@ -39,13 +39,13 @@ class PostManager extends BaseManager
     }
 
 
-    public function createPost(Post $post): bool
+    public function addPost(Post $post): bool
     {
-        $query = $this->pdo->prepare('INSERT INTO' . PDOFactory::DATABASE . '.posts (title, content, publish_date, userId) VALUES (:title, :content, :publish_date, :userId)');
-        $query->bindValue(':title', $post->getTitle(), PDO::PARAM_STR);
-        $query->bindValue(':content', $post->getContent(), PDO::PARAM_STR);
-        $query->bindValue(':pubish_date', date('Y/m/d H:i:s'), PDO::PARAM_STR);
-        $query->bindValue(':userID', $post->getUserId(), PDO::PARAM_INT);
+        $query = $this->pdo->prepare('INSERT INTO ' . PDOFactory::DATABASE . '.posts (title, content, publish_date, userId) VALUES (:title, :content, :publish_date, :userId)');
+        $query->bindValue(':title', $post->getTitle(), \PDO::PARAM_STR);
+        $query->bindValue(':content', $post->getContent(), \PDO::PARAM_STR);
+        $query->bindValue(':publish_date', date('Y/m/d H:i:s'), \PDO::PARAM_STR);
+        $query->bindValue(':userID', $post->getUserId(), \PDO::PARAM_INT);
         return $query->execute();
     }
 
