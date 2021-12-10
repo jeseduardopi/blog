@@ -21,12 +21,10 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home
-                            <span class="visually-hidden">(current)</span>
-                        </a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="parameter.php">Paramètre</a>
+                        <a class="nav-link" href="author.php">Paramètre</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="post.php">Post</a>
