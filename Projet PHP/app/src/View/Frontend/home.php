@@ -10,6 +10,7 @@
 <table class="table">
     <thead>
     <th>Titre</th>
+    <link rel="stylesheet" href="../style/bootstrap.css">
     <th>Contenu</th>
     <!--<th>Date</th>-->
     <th>Actions</th>
@@ -19,14 +20,24 @@
     foreach($posts as $post){
 
         ?>
-        <tr>
-            <td><a href="/post/<?php echo $post->getId()?>"><?php  echo $post->getTitle(); ?></a></td>
-            <td><?php echo $post->getContent(); ?></td>
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="..." class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
 
-            <td><a href="/show/".<?php $post->getUserId()?> class="btn text-white bg-primary">Modifier</a>
-                <a href="/show/".<?php $post->getUserId()?> class="btn text-white bg-danger">Delete</a></td>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php  echo $post->getTitle(); ?></h5>
+                        <p class="card-text"><?php echo $post->getContent(); ?></p>
+                        <a href="/post/<?php echo $post->getId()?>" class="btn btn-primary stretched-link">Lire plus</a>
+                    </div>
 
-        </tr>
+                </div>
+            </div>
+        </div>
+
+
         <?php
     }
     ?>

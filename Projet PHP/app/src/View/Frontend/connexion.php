@@ -10,7 +10,7 @@
               rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
               crossorigin="anonymous">
         <title>Blog</title>
-        <link rel="stylesheet" href="style/bootstrap.css">
+        <link rel="stylesheet" href="../style/bootstrap.css">
     </head>
     <body>
     <h1 style="text-align: center;">Bienvenue sur notre blog</h1>
